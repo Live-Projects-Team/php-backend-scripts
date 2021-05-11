@@ -18,7 +18,8 @@ session_start();
           $dbpassword=$row[2];
 		  $utype=$row[3];
         }
-           if($username== $dbusername && $password== $dbpassword && $utype=='Admin'){
+            //verify the entered password by hashed one from db
+          if($username== $dbusername && password_verify($password,$dbpassword) /*$password== $dbpassword*/ && $utype=='Admin'){
           $_SESSION['username']=$username;
           $_SESSION['id']=$userId;
           header('Location:adminDashbored.php');
